@@ -1,0 +1,108 @@
+Query: Create 3 new dojos
+
+In [2]: Dojos.objects.create(name="Seattle Dojo", city="Bellevue", state="WA");
+In [3]: Dojos.objects.create(name="Chicago Dojo", city="Chicago", state="IL");
+In [4]: Dojos.objects.create(name="Online Dojo", city="Online", state="WA");
+
+Query: Delete the 3 dojos you just created
+
+In [5]: a = Dojos.objects.get(id=1);
+In [6]: a.delete();
+In [7]: b = Dojos.objects.get(id=2)
+In [8]: b.delete();
+In [9]: c = Dojos.objects.get(id=3)
+In [10]: c.delete();
+
+Query: Create 3 more dojos
+
+In [11]: Dojos.objects.create(name="Central Illinois Dojo", city="Springfield", state="IL");
+In [12]: Dojos.objects.create(name="Sin City Dojo", city="Las Vegas", state="NV");
+In [13]: Dojos.objects.create(name="Tulsa Dojo", city="Tulsa", state="OK");
+
+Query: Create 3 ninjas that belong to the first dojo
+
+In [17]: firstdojo = Dojos.objects.get(id=4)
+In [18]: firstninja = Ninjas.objects.create(first_name="Erin", last_name="Winking", dojo=firstdojo);
+In [19]: secondninja = Ninjas.objects.create(first_name="Miharu", last_name="Sena-Kanaka", dojo=firstdojo);
+In [20]: thirdninja = Ninjas.objects.create(first_name="Kirie", last_name="Kojima", dojo=firstdojo);
+
+Query: Create 3 ninjas that belong to the second dojo
+
+In [21]: seconddojo = Dojos.objects.get(id=5)
+In [22]: d = Ninjas.objects.create(first_name="Nadeshiko", last_name="Kagamihara", dojo=seconddojo);
+In [23]: e = Ninjas.objects.create(first_name="Rin", last_name="Shima", dojo=seconddojo);
+In [24]: f = Ninjas.objects.create(first_name="Aoi", last_name="Inuyama", dojo=seconddojo);
+
+Query: Create 3 ninjas that belong to the third dojo
+
+In [25]: thirddojo = Dojos.objects.get(id=6)
+In [26]: g = Ninjas.objects.create(first_name="Akari", last_name="Akaza", dojo=thirddojo);
+In [27]: h = Ninjas.objects.create(first_name="Kyoko", last_name="Toshino", dojo=thirddojo);
+In [28]: j = Ninjas.objects.create(first_name="Ayano", last_name="Sugiura", dojo=thirddojo);
+
+Query: Retrieve all the ninjas from the first dojo
+
+In [55]: dojo_first = Dojos.objects.first()
+In [56]: ninjalist = Ninjas.objects.filter(dojo=dojo_first)
+In [57]: for ninja in ninjalist:
+    ...:     print(f"{ninja.first_name} {ninja.last_name}\n")
+    ...:
+Erin Winking
+Miharu Sena-Kanaka
+Kirie Kojima
+
+Query: Retrieve all the ninjas from the last dojo
+
+In [58]: dojo_last = Dojos.objects.last()
+In [59]: ninjalist = Ninjas.objects.filter(dojo=dojo_last)
+In [60]: for ninja in ninjalist:
+    ...:     print(f"{ninja.first_name} {ninja.last_name}\n")
+    ...:
+Akari Akaza
+Kyoko Toshino
+Ayano Sugiura
+
+Query: Retrieve the last ninja's dojo
+
+In [65]: ninjalast = Ninjas.objects.last()
+In [66]: print(ninjalast.dojo.name)
+Tulsa Dojo
+
+Add a new text field called "desc" to your Dojo class
+
+desc = models.TextField() # added in VSCode
+
+Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"
+
+(djangoPy3Env) F:\CodingDojo\Python\django\django_intro\dojo_ninjas_proj>python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojos without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> Old Dojo!
+Invalid input: invalid syntax (<string>, line 1)
+>>> "Old Dojo!"
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app\migrations\0002_dojos_desc.py
+    - Add field desc to dojos
+
+(djangoPy3Env) F:\CodingDojo\Python\django\django_intro\dojo_ninjas_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Applying dojo_ninjas_app.0002_dojos_desc... OK
+
+Query: Create a new dojo
+
+In [2]: z = Dojos.objects.create(name="Seattle Dojo", city="Bellevue", state="WA", desc="The first Dojo! The one
+...: that's in the eastside city of Bellevue, right on the otherside of the very pretty Lake Washington!")
+
+In [3]:
+
+
+
+

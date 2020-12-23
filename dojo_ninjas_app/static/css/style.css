@@ -1,0 +1,103 @@
+#container {
+    margin: 2% auto;
+    width: 35%;
+    min-height: 1000px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: center;
+}
+
+.headline {
+    width: 50%;
+    text-align: center;
+}
+
+    .headline h2 {
+        font-size: 2.5em;
+        font-family: sans-serif;
+    }
+
+#forms {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: center;
+    width: 50%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.col {
+    text-align: right;
+    min-width: 20%;
+    padding: 2%;
+}
+
+.formlabel {
+    min-width: 50px;
+}
+
+#dojo {
+    margin-left: 44px;
+}
+
+button {
+    margin: 10px 40%;
+}
+
+input, select {
+    margin: 5px;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+    main h2 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+        font-size: 3em;
+    }
+
+    main ul {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.15em;
+    }
+
+    main ul li {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 0.85em;
+        padding: 3px;
+    }
+
+    .deletetext {
+        font-size: 0.5em;
+        font-weight: lighter;
+        vertical-align: middle;
+    }
+
+    main a {
+        text-decoration: none;
+    }

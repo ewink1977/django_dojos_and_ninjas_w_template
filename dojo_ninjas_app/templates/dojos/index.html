@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojos & Ninjas</title>
+    <link rel="stylesheet" href="{% static 'css\style.css' %}">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <div class="headline">
+                <h2>Add A Dojo</h2>
+            </div>
+            <div class="headline">
+                <h2>Add A Ninja</h2>
+            </div>
+        </header>
+        <div id="forms">
+            <!-- <div class="row"> -->
+                <form action="newdojo" method="POST">
+                <div class="col">
+                    {% csrf_token %}
+                    <label for="name" class="formlabel">Name </label>
+                    <input type="text" name="city" id="city"><br>
+                    <label for="city" class="formlabel">City </label>
+                    <input type="text" name="name" id="name"><br>
+                    <label for="state" class="formlabel">State </label>
+                    <input type="text" name="state" id="state"><br>
+                    <button>Add</button>
+                </div>
+                </form>
+            <form action="newninja" method="POST">
+                <div class="col">
+                    {% csrf_token %}
+                    <label for="first_name" class="formlabel">First Name </label>
+                    <input type="text" name="first_name" id="first_name"><br>
+                    <label for="last_name" class="formlabel">Last Name </label>
+                    <input type="text" name="last_name" id="last_name"><br>
+                    <label for="dojo" class="formlabel">Dojo </label>
+                    <select name="dojo" id="dojo">
+                        {% for dojo in dojos %}
+                        <option value="{{ dojo.id }}">{{ dojo.name }}</option>
+                        {% endfor %}
+                    </select><br>
+                    <button>Add</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <main>
+            <h2>
+                All The Dojos!
+            </h2>
+            <ul>
+                {% for dojo in dojos %}
+                <li>{{ dojo.name }} - <a href="delete/{{ dojo.id }}" class='deletetext'>DELETE DOJO</a>
+                    <ul>
+                        {% for ninja in dojo.ninja.all %}
+                        <li>{{ ninja.first_name }} {{ ninja.last_name }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+            </ul>
+        </main>
+    </div>
+</body>
+</html>
